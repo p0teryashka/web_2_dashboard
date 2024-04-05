@@ -1,0 +1,86 @@
+/*Стиль базовых html5 блоков*/
+body {
+	color: #303030;
+	font: 12px Tahoma, sans-serif;
+	background-color: #f8f8f8;
+	border-top: 5px solid #7e7e7e;
+	margin: 0;
+}
+
+input[type="text"], input[type="search"], input[type="email"] {
+	background-color: #f3f3f3;
+	border: 1px solid #e7e7e7;
+	height: 30px;
+	color: #303030;
+	padding: 0 10px;
+	vertical-align: top;
+}
+select {
+	width: 100%;
+	min-width: 15ch;
+	max-width: 30ch;
+	border: 1px solid var(--select-border);
+	border-radius: 0.25em;
+	padding: 0.25em 0.5em;
+	font-size: 1.25rem;
+	cursor: pointer;
+	line-height: 1.1;
+	background-color: #fff;
+	background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+	margin: 5px;
+	float: right;
+}
+textarea {
+	background-color: #f3f3f3;
+	border: 1px solid #e7e7e7;
+	height: 100px;
+	color: #303030;
+	padding: 0 10px;
+	vertical-align: top;
+}
+input[type="submit"], button {
+	color: #fff;
+	background-color: #a4e9f7;
+	border: none;
+	height: 32px;
+	font-family: 'Oswald', sans-serif;
+}
+p {
+	margin: 20px 0;
+}
+
+header {
+	margin: 5px;
+	border-radius: 5px;
+	background-color: rgb(185, 217, 238);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+main {
+	background:#f3f3f3;
+}
+
+main form {
+	background-color:#ffffff;
+	padding: 10px 10px;
+}
+
+/* стиль основного текста (контента) */
+
+h1 {
+	display: inline-block;
+	color: #000000;
+	font: 40px/40px 'Oswald', sans-serif;
+	margin: 0;
+	padding: 0 10px;
+	margin: 5px;
+}
+
+.widget-block { 
+  margin: 5px 5px 5px 5px;
+  border-radius: 5px;
+  max-height: 40vh;
+  background-color: Snow;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+

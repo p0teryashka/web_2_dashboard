@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Dash</title>
+		<link rel="stylesheet" href="css/styles.css">
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+	</head>
+		<body>
+				<header>
+					<form name="search" action="#" method="get">
+						<select id="yearSelect">
+							<option disabled>Год выпуска</option>
+							<option value="2021">2021</option>
+							<option selected value="2022">2022</option>
+							<option value="2023">2023</option>
+					   </select>
+					</form>
+					<div>
+						<h1>Сводные показатели трудоустройства выпускников</h1>
+					</div>
+				</header>
+				<nav>
+				</nav>
+				<main>
+					<table style="width:100%">
+						<tr>
+							<td>
+								<div>
+									<canvas id="widget1" class="widget-block"></canvas>
+								</div>
+							</td>
+							<td>
+								<div>
+									<canvas id="widget2" class="widget-block"></canvas>
+								</div>
+							</td>
+							<td>
+								<div>
+									<canvas id="widget3" class="widget-block"></canvas>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div>
+									<canvas id="widget4" class="widget-block"></canvas>
+								</div>
+							</td>
+							<td>
+								<div>
+									<canvas id="widget5" class="widget-block"></canvas>
+								</div>
+							</td>
+							<td>
+								<div>
+									<canvas id="widget6" class="widget-block"></canvas>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</main>
+			<footer>
+			</footer>
+			<!-- Подключаем виджеты -->
+			<script type="text/javascript" src="js/bars.js"></script>
+			<script type="text/javascript" src="js/doughnut.js"></script>
+			<script type="text/javascript" src="js/sidebars.js"></script>
+			<script type="text/javascript" src="js/graph.js"></script>
+			<script type="text/javascript" src="js/pie.js"></script>
+			<!-- Рисуем виджеты -->
+			<script type="text/javascript">
+			
+			// функция отрисовки виджетов
+			function drawDash(year) {
+				// данные для виджетов
+				var barsDiagramData = {'2021': [550, 590, 1570], '2022': [1030, 690, 3870], '2023': [1000, 650, 2770]};
+				var doughnutDiagramData = {'2021': [35200, 82130, 45700], '2022': [59200, 92130, 48700], '2023': [57200, 87130, 36700]};
+				var sideBarsDiagramData = {'2021': [61, 70, 58], '2022': [65, 85, 60], '2023': [71, 80, 58]};
+				var pieNotInRegionDiagramData = {'2021': 34, '2022': 42, '2023':45};
+				var pieTopMigrRegionDiagramData = {
+					'2021': {regionName: 'Республика Адыгея', percent: 73}, 
+					'2022': {regionName: 'Республика Башкортостан', percent: 75},
+					'2023': {regionName: 'Омская область', percent: 77}
+				};
+			
+				var widget1 = document.getElementById('widget1');
+				drawBarsDiagram(widget1, barsDiagramData[year]);
+				var widget2 = document.getElementById('widget2');
+				drawDoughnutDiagram(widget2, doughnutDiagramData[year]);
+				var widget3 = document.getElementById('widget3');
+				drawSideBarsDiagram(widget3, sideBarsDiagramData[year]);
+				var widget4 = document.getElementById('widget4');
+				drawGraph(widget4, [170000, 180000, 175000, 190000, 200030], ['2019', '2020', '2021', '2022', '2023']);
+				var widget5 = document.getElementById('widget5');
+				drawPieDiagram(widget5, pieNotInRegionDiagramData[year], '% трудоустройства', 'Трудоустроенные не в регионе обучения');
+				var widget6 = document.getElementById('widget6');
+				drawPieDiagram(widget6, pieTopMigrRegionDiagramData[year].percent, '% миграции в регионе', 'Регион с наибольшей трудовой миграцией: ' + pieTopMigrRegionDiagramData[year].regionName);
+			}
+			
+			// функция очистки виджета по идентификатору
+			function clearWidget(widgetName) {
+				let widget = Chart.getChart(widgetName); // <canvas> id
+					if (widget != undefined) {
+						widget.destroy();
+					}
+			}
+			
+			const selectElem = document.getElementById("yearSelect");		// элемент выбора годов
+			
+			// прикрепляем функцию, выполняемаю при смене года в select
+			selectElem.addEventListener("change", (event) => {
+				// очищаем текущие виджеты
+				clearWidget('widget1');
+				clearWidget('widget2');
+				clearWidget('widget3');
+				clearWidget('widget4');
+				clearWidget('widget5');
+				clearWidget('widget6');
+				drawDash(event.target.value);
+			});
+			
+			var selectedValue = selectElem.value;		// значение выбранного года
+			// рисуем виджеты по заданному году
+			drawDash(selectedValue);
+			//var text = e.options[e.selectedIndex].text;
+			</script>
+
+		</body>
+</html>
